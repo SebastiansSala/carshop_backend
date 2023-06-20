@@ -9,7 +9,7 @@ import {
 } from "../models/car";
 import { Car } from "../types";
 
-const carBrands = {
+const carBrands: { [key: string]: any } = {
   toyota: toyotaModel,
   bmw: bmwModel,
   ford: fordModel,
@@ -24,7 +24,7 @@ export const getAllCars = async (
   next: NextFunction
 ) => {
   try {
-    //reduce to get allCars
+    //get an array of all the cars
     let allCarsList: Car[] = [];
     for (let brand in carBrands) {
       const CarModel = carBrands[brand];
@@ -45,13 +45,15 @@ export const getCarsBrand = async (
 ) => {
   try {
     const { brand } = req.params;
-    const CarBrand = carBrands[brand];
+    const brandLowerCase = brand.toLowerCase();
+    const CarBrand = carBrands[brandLowerCase];
 
     if (!CarBrand) {
       return res.status(404).json({ message: "Brand not found" });
     }
+    console.log(CarBrand)
 
-    const cars = await CarBrand.find({ brand });
+    const cars = await CarBrand.find();
     res.json(cars);
   } catch (error) {
     res.status(500).json({ message: "Error retrieving cars from brand" });

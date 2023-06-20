@@ -1,6 +1,7 @@
 import { Document } from "mongoose";
 
 export interface Car extends Document {
+  img?: string;
   brand: string;
   model: string;
   year: number;

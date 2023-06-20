@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from "express";
 import { User } from "../types";
-import { userModel } from "../models/User";
+import { userModel } from "../models/user";
 
 const createUser = async (req: Request, res: Response, next: NextFunction) => {
   try {
@@ -17,8 +17,9 @@ const createUser = async (req: Request, res: Response, next: NextFunction) => {
 const getUser = async (req: Request, res: Response, next: NextFunction) => {
   try {
     const { username, email, password }: User = req.body;
+
     
-    res.status(200).json(user);
+    //res.status(200).json(user);
   } catch (error) {
     res.status(500).json({ message: "Error getting user" });
     next(error);

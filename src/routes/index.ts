@@ -1,8 +1,8 @@
 import express from "express";
+import carsRouter from "./cars"
+
 const router = express.Router();
 
-router.get("/", (req, res) => {
-  res.send("Hello World!");
-});
+router.use("/cars", carsRouter);
 
 export default router;
