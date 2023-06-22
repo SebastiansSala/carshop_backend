@@ -1,8 +1,8 @@
-POST http://localhost:5000/users/signup
+POST http://localhost:5000/users/signup HTTP/1.1
 Content-Type: application/json
 
 {
-  "username": "ejemplo",
-  "email": "ejemplo@example.com",
-  "password": "contraseña"
+  "email": "admin@gmail.com",
+  "username": "querido",
+  "password": "admin123"
 }

@@ -15,7 +15,7 @@ export const validateSignup = async (
   try {
     const { email, username, password } = req.body;
     if (!email || !username || !password)
-      return res.status(401).send("Incorrect pattern");
+      return res.status(401).send(`Must have ${email}, ${username}, ${password}`);
     const validatedUser = await signupSchema.validate({
       email,
       username,
