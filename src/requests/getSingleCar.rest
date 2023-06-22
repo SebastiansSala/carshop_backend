@@ -1,2 +1,2 @@
-GET http://localhost:5000/cars/Honda
+GET http://localhost:5000/cars/honda
 Content-Type: application/json

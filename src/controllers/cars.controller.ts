@@ -38,20 +38,19 @@ export const getAllCars = async (
   }
 };
 
-export const getCarsBrand = async (
+export const getCarsByBrand = async (
   req: Request,
   res: Response,
   next: NextFunction
 ) => {
   try {
     const { brand } = req.params;
-    const brandLowerCase = brand.toLowerCase();
-    const CarBrand = carBrands[brandLowerCase];
+    const CarBrand = carBrands[brand];
+    console.log(CarBrand);
 
     if (!CarBrand) {
       return res.status(404).json({ message: "Brand not found" });
     }
-    console.log(CarBrand)
 
     const cars = await CarBrand.find();
     res.json(cars);

@@ -16,8 +16,3 @@ export function create(model: Model<Car>): Car {
   return newData;
 }
 
-export async function addImg(model: Model<Car>): Promise<Car>{
-  const cars = await model.find();
-  return cars
-}
-
