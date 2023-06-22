@@ -3,15 +3,6 @@ import cors from "cors";
 import mongoose from "mongoose";
 import passport from "./config/passport-config";
 import router from "./routes/index";
-import { create } from "./seeds";
-import {
-  toyotaModel,
-  bmwModel,
-  chevroletModel,
-  hondaModel,
-  mercedesModel,
-  fordModel,
-} from "./models/car";
 import "dotenv/config";
 
 const app = express();

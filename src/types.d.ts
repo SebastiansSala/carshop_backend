@@ -1,5 +1,4 @@
 import { Document } from "mongoose";
-import { string, object } from "yup";
 
 export interface Car extends Document {
   img?: string;
