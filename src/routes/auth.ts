@@ -10,7 +10,7 @@ router.get("/", user.getUsers);
 router.post("/signup", validateSignup, user.createUser);
 
 //get specific car model
-router.get("/login", validateLogin, user.getUser);
+router.post("/login", validateLogin, user.getUser);
 
 //delete user
 router.delete("/:id", user.deleteUser);

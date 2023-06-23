@@ -12,13 +12,24 @@ const createToken = (user: User) => {
     const { _id, email, username } = user;
     const token = jwt.sign(
       { _id, email, username },
-      JSON.stringify(SECRET_KEY)
+      JSON.stringify(SECRET_KEY),
+      {expiresIn: '1h'}
     );
     return token;
   } catch (error) {
     throw new Error("Failed to create token");
   }
 };
+
+const decodeToken = (token: string) => {  
+  try{
+    const decoded = jwt.verify(token, JSON.stringify(SECRET_KEY));
+    return decoded;
+  }catch(error){
+    throw new Error("Failed to decode token");
+  }
+}
+
 
 export const getUsers = async (
   req: Request,
@@ -49,8 +60,8 @@ export const createUser = async (
     });
     const createdUser = await newUser.save();
     const token = createToken(createdUser);
-
-    res.status(201).json({ token, message: "User created successfully" });
+    const decodedToken = decodeToken(token); 
+    res.status(201).json({ token: decodedToken, message: "User created successfully" });
   } catch (error) {
     res.status(500).json({
       message: "Error creating user",
@@ -76,7 +87,8 @@ export const getUser = async (
       return res.status(401).json({ message: "Password incorrect" });
     }
     const token = createToken(user);
-    return res.status(200).json({ token });
+    const decodedToken = decodeToken(token);
+    return res.status(200).json({ token: decodedToken, message: "Succesfully logged" });
   } catch (error) {
     res.status(500).json({ message: "Error getting user" });
     next(error);
