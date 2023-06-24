@@ -17,6 +17,7 @@ passport.use(
       if (user) return done(null, user);
       return done(null, false);
     } catch (error) {
+      console.log(jwtPayload);
       return done(error, false);
     }
   })

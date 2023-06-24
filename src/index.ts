@@ -1,6 +1,7 @@
 import express from "express";
 import cors from "cors";
 import mongoose from "mongoose";
+import cookieParser from "cookie-parser";
 import passport from "./config/passport-config";
 import router from "./routes/index";
 import addInfo from "./seeds";
@@ -13,6 +14,7 @@ app.set("port", PORT);
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(cookieParser());
 app.use(passport.initialize());
 app.use(router);
 

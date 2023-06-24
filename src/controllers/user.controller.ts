@@ -45,7 +45,7 @@ export const getUsers = async (
   }
 };
 
-export const createUser = async (
+export const signup = async (
   req: Request,
   res: Response,
   next: NextFunction
@@ -60,8 +60,8 @@ export const createUser = async (
     });
     const createdUser = await newUser.save();
     const token = createToken(createdUser);
-    const decodedToken = decodeToken(token); 
-    res.status(201).json({ token: decodedToken, message: "User created successfully" });
+    res.cookie("token", token, { httpOnly: true });
+    res.status(201).json({ token, message: "User created successfully" });
   } catch (error) {
     res.status(500).json({
       message: "Error creating user",
@@ -70,7 +70,7 @@ export const createUser = async (
   }
 };
 
-export const getUser = async (
+export const login = async (
   req: Request,
   res: Response,
   next: NextFunction
@@ -87,8 +87,8 @@ export const getUser = async (
       return res.status(401).json({ message: "Password incorrect" });
     }
     const token = createToken(user);
-    const decodedToken = decodeToken(token);
-    return res.status(200).json({ token: decodedToken, message: "Succesfully logged" });
+    res.cookie("token", token, { httpOnly: true });
+    return res.status(200).json({ token, message: "Succesfully logged" });
   } catch (error) {
     res.status(500).json({ message: "Error getting user" });
     next(error);
