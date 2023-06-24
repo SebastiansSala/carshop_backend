@@ -3,6 +3,7 @@ import cors from "cors";
 import mongoose from "mongoose";
 import passport from "./config/passport-config";
 import router from "./routes/index";
+import addInfo from "./seeds";
 import "dotenv/config";
 
 const app = express();

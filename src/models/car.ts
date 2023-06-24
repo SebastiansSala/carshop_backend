@@ -23,7 +23,11 @@ const carSchema = new Schema<Car>({
     type: Number,
     required: true,
   },
-});
+  img:{
+    type: String,
+    required: false
+  }
+}, {timestamps: true});
 export const toyotaModel = mongoose.model<Car>("toyota", carSchema);
 export const bmwModel = mongoose.model<Car>("bmw", carSchema);
 export const fordModel = mongoose.model<Car>("ford", carSchema);
