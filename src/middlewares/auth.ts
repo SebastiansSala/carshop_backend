@@ -36,7 +36,6 @@ export const validateSignup = async (
 
 const loginSchema = object().shape({
   email: string().required(),
-  username: string().min(3).max(20),
   password: string().min(8).required(),
 });
 
@@ -49,7 +48,6 @@ export const validateLogin = async (
     const { email, username, password } = req.body;
     const validatedUser = await loginSchema.validate({
       email,
-      username,
       password,
     });
     if (!validatedUser) return res.status(400).send("Incorrect pattern");
