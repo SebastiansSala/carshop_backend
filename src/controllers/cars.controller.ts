@@ -46,7 +46,6 @@ export const getCarsByBrand = async (
   try {
     const { brand } = req.params;
     const CarBrand = carBrands[brand];
-    console.log(CarBrand);
 
     if (!CarBrand) {
       return res.status(404).json({ message: "Brand not found" });
